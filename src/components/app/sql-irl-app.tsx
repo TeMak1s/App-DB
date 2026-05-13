@@ -331,9 +331,17 @@ export function SqlIrlApp() {
       return (
         <div className="space-y-4">
           <HeroHeader profile={state.profile} onGainXp={handleGainXp} />
-          <SkillsRadar metrics={state.skillRadar} />
+
+          <div className="grid gap-4 xl:grid-cols-5">
+            <div className="xl:col-span-3">
+              <SkillsRadar metrics={state.skillRadar} />
+            </div>
+            <div className="xl:col-span-2">
+              <BadgesGrid badges={state.badges} />
+            </div>
+          </div>
+
           <QuestsCard missions={state.missions} />
-          <BadgesGrid badges={state.badges} />
         </div>
       );
     }
@@ -414,7 +422,7 @@ export function SqlIrlApp() {
   }
 
   return (
-    <main className="hud-grid cyber-scroll relative mx-auto min-h-screen w-full max-w-3xl pb-24">
+    <main className="hud-grid cyber-scroll relative mx-auto min-h-screen w-full max-w-6xl pb-24">
       <ParticleField />
 
       <div className="px-4 pb-8 pt-6 md:px-6">
