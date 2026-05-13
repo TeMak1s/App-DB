@@ -1,41 +1,41 @@
 @import "tailwindcss";
 
 :root {
-  --bg-0: #060c17;
-  --bg-1: #0b162a;
-  --bg-2: #13243f;
-  --fg: #f2e9cc;
-  --muted: #b7a980;
-  --accent-gold: #c8aa6e;
-  --accent-gold-strong: #f0d7a2;
-  --accent-blue: #0a7ca5;
-  --accent-royal: #1b3f6d;
-  --glass: rgba(11, 22, 38, 0.78);
-  --glass-border: rgba(200, 170, 110, 0.34);
+  --bg-0: #050505;
+  --bg-1: #0b0b0b;
+  --bg-2: #141414;
+  --fg: #f8f8f8;
+  --muted: #d0d0d0;
+  --accent-gold: #f3d65c;
+  --accent-gold-strong: #fff1a8;
+  --accent-blue: #ff3b30;
+  --accent-royal: #8a1717;
+  --glass: rgba(8, 8, 8, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.22);
   --background: var(--bg-0);
   --foreground: var(--fg);
 
-  /* Tailwind token remap for existing utility classes to match LoL palette */
-  --color-cyan-100: #f4e7c8;
-  --color-cyan-200: #e8d7ac;
-  --color-cyan-300: #d3ba7e;
-  --color-cyan-400: #c8aa6e;
-  --color-cyan-500: #a98845;
+  /* Tailwind token remap for Undertale-style UI */
+  --color-cyan-100: #f8f8f8;
+  --color-cyan-200: #eaeaea;
+  --color-cyan-300: #ffffff;
+  --color-cyan-400: #f3d65c;
+  --color-cyan-500: #ff3b30;
 
-  --color-fuchsia-100: #f0d7a2;
-  --color-fuchsia-200: #e4c88f;
-  --color-fuchsia-300: #d9b77a;
-  --color-fuchsia-400: #c8aa6e;
-  --color-fuchsia-500: #a98845;
+  --color-fuchsia-100: #f7c0c0;
+  --color-fuchsia-200: #f08b8b;
+  --color-fuchsia-300: #ff5c5c;
+  --color-fuchsia-400: #ff3b30;
+  --color-fuchsia-500: #c51616;
 
-  --color-violet-300: #2c5f93;
-  --color-violet-400: #1f4d7f;
-  --color-violet-500: #173a63;
+  --color-violet-300: #8a1717;
+  --color-violet-400: #5d1111;
+  --color-violet-500: #3a0a0a;
 
-  --color-blue-500: #1f4d7f;
-  --color-amber-200: #f0d7a2;
-  --color-amber-300: #d9b77a;
-  --color-amber-500: #a98845;
+  --color-blue-500: #8a1717;
+  --color-amber-200: #fff1a8;
+  --color-amber-300: #f3d65c;
+  --color-amber-500: #c89f22;
 }
 
 @theme inline {
@@ -51,10 +51,9 @@
 
 body {
   background:
-    radial-gradient(circle at 18% 12%, rgba(200, 170, 110, 0.16), transparent 35%),
-    radial-gradient(circle at 82% 24%, rgba(30, 72, 122, 0.28), transparent 42%),
-    radial-gradient(circle at 45% 88%, rgba(169, 136, 69, 0.18), transparent 40%),
-    linear-gradient(165deg, var(--bg-0), var(--bg-1) 42%, var(--bg-2));
+    radial-gradient(circle at 20% 12%, rgba(255, 59, 48, 0.12), transparent 28%),
+    radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.08), transparent 24%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 55%, var(--bg-2));
   background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-exo2), sans-serif;
@@ -63,28 +62,22 @@ body {
 
 .hud-grid {
   background-image:
-    linear-gradient(rgba(200, 170, 110, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200, 170, 110, 0.04) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(200, 170, 110, 0.08), transparent 52%);
-  background-size: 34px 34px, 34px 34px, 100% 100%;
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px, 28px 28px;
 }
 
 .text-neon {
-  text-shadow:
-    0 0 10px rgba(200, 170, 110, 0.7),
-    0 0 24px rgba(132, 102, 48, 0.55);
+  text-shadow: 0 0 0 transparent;
 }
 
 .glass-panel {
-  background:
-    linear-gradient(165deg, rgba(15, 28, 47, 0.88), rgba(10, 19, 34, 0.85)),
-    var(--glass);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(18, 18, 18, 0.96));
+  border: 2px solid var(--glass-border);
+  backdrop-filter: blur(0);
   box-shadow:
-    inset 0 0 0 1px rgba(240, 215, 162, 0.12),
-    inset 0 0 18px rgba(200, 170, 110, 0.06),
-    0 12px 24px rgba(3, 8, 16, 0.42);
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .neon-border {
@@ -96,15 +89,14 @@ body {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(145deg, rgba(240, 215, 162, 0.66), rgba(200, 170, 110, 0.7), rgba(38, 88, 140, 0.45));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(255, 59, 48, 0.45), rgba(255, 255, 255, 0.14));
   z-index: -1;
-  filter: blur(5px);
-  opacity: 0.42;
+  filter: blur(2px);
+  opacity: 0.3;
 }
 
 .holographic {
-  background:
-    linear-gradient(135deg, rgba(200, 170, 110, 0.12), rgba(26, 52, 84, 0.08) 42%, rgba(240, 215, 162, 0.1));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 59, 48, 0.04) 42%, rgba(255, 255, 255, 0.02));
 }
 
 .animated-border {
@@ -119,8 +111,8 @@ body {
   right: 8%;
   top: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(240, 215, 162, 0.85), transparent);
-  opacity: 0.75;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  opacity: 0.45;
   animation: borderScan 10s linear infinite;
 }
 
@@ -133,9 +125,9 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0%, rgba(240, 215, 162, 0.08) 50%, transparent 100%);
-  background-size: 100% 6px;
-  opacity: 0.08;
+  background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.07) 50%, transparent 100%);
+  background-size: 100% 4px;
+  opacity: 0.05;
 }
 
 .cyber-scroll::-webkit-scrollbar {
@@ -166,18 +158,8 @@ body {
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-3px);
   }
 }
 
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 rgba(200, 170, 110, 0.25);
-  }
-  50% {
-    box-shadow: 0 0 26px rgba(200, 170, 110, 0.46);
-  }
-}
-
-/* kept intentionally minimal to reduce GPU pressure */
+/* Undertale theme intentionally favors static, high-contrast surfaces over effects */

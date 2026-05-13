@@ -460,10 +460,10 @@ export function SqlIrlApp() {
       <div className="px-4 pb-8 pt-6 md:px-6">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-cyan-300">A Legends Hub for Database Masters</p>
-            <h2 className="font-mono text-2xl text-white text-neon">Summoner Archive: DB Rank</h2>
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/80">DETERMINATION</p>
+            <h2 className="font-mono text-2xl text-white">SAVE FILE: DB IRL</h2>
           </div>
-          <div className="rounded-xl border border-cyan-300/30 bg-cyan-500/10 px-3 py-2 text-xs text-cyan-100">
+          <div className="rounded-none border border-white/30 bg-black px-3 py-2 text-xs text-white">
             <Sparkles size={14} className="mb-1" />
             {connectionSource === "supabase" ? "LIVE SUPABASE" : "MOCK MODE"}
           </div>
@@ -473,7 +473,7 @@ export function SqlIrlApp() {
           <button
             type="button"
             onClick={handleLogout}
-            className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-500/10 px-3 py-2 text-xs uppercase tracking-[0.14em] text-cyan-100"
+            className="inline-flex items-center gap-2 rounded-none border border-white/30 bg-black px-3 py-2 text-xs uppercase tracking-[0.14em] text-white"
           >
             <LogOut size={14} /> Logout
           </button>
@@ -495,13 +495,13 @@ export function SqlIrlApp() {
         {content}
 
         <section className="glass-panel mt-4 rounded-2xl p-4">
-          <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-300">Future Integrations</h3>
+          <h3 className="font-mono text-xs uppercase tracking-[0.2em] text-white">FUTURE PATHS</h3>
           <div className="mt-2 grid gap-2 md:grid-cols-2">
             {futureIntegrations.map((integration) => (
               <div key={integration.id} className="rounded-xl border border-white/10 bg-black/20 p-3">
                 <p className="text-sm text-white">{integration.name}</p>
                 <p className="text-xs text-cyan-100/70">{integration.description}</p>
-                <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-fuchsia-200">{integration.status}</p>
+                <p className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/80">{integration.status}</p>
               </div>
             ))}
           </div>

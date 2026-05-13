@@ -10,7 +10,7 @@ export function GlassCard({ children, className }: GlassCardProps) {
   return (
     <article
       className={cn(
-        "glass-panel animated-border relative rounded-2xl p-4 md:p-5",
+        "glass-panel animated-border relative rounded-none p-4 md:p-5",
         className,
       )}
     >

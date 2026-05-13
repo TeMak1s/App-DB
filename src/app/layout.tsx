@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Cinzel, Lora } from "next/font/google";
+import { Press_Start_2P, VT323 } from "next/font/google";
 import "./globals.css";
 
-const cinzel = Cinzel({
+const pressStart = Press_Start_2P({
   variable: "--font-orbitron",
   subsets: ["latin"],
+  weight: "400",
 });
 
-const lora = Lora({
+const vt323 = VT323({
   variable: "--font-exo2",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
   title: "SQL IRL | DB Rank",
-  description: "Legend-inspired progression dashboard for database mastery.",
+  description: "Undertale-inspired progression dashboard for database mastery.",
 };
 
 export default function RootLayout({
@@ -25,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${lora.variable} h-full antialiased`}
+      className={`${pressStart.variable} ${vt323.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

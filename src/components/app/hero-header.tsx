@@ -15,18 +15,16 @@ function HeroHeaderComponent({ profile, onGainXp }: HeroHeaderProps) {
   const progress = xpProgress(profile.xp, profile.xpToNext);
 
   return (
-    <section className="glass-panel neon-border scanline relative overflow-hidden rounded-3xl p-4 md:p-6">
-      <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl" />
-      <div className="absolute -left-10 bottom-0 h-32 w-32 rounded-full bg-fuchsia-500/20 blur-3xl" />
+    <section className="glass-panel neon-border scanline relative overflow-hidden rounded-none p-4 md:p-6">
 
       <div className="relative flex flex-col gap-4">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="relative h-14 w-14 overflow-hidden rounded-2xl border border-cyan-300/50">
+            <div className="relative h-14 w-14 overflow-hidden rounded-none border border-white/35">
               <Image src={profile.avatarUrl} alt={profile.nickname} fill sizes="56px" className="object-cover" />
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-300/80">SQL IRL Operative</p>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/80">PLAYER</p>
               <h1 className="font-mono text-xl text-white md:text-2xl">{profile.nickname}</h1>
               <div className="mt-1">
                 <RankBadge rank={profile.rank} />
@@ -37,24 +35,24 @@ function HeroHeaderComponent({ profile, onGainXp }: HeroHeaderProps) {
           <button
             type="button"
             onClick={onGainXp}
-            className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/45 bg-cyan-400/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 transition hover:bg-cyan-400/20 hover:border-cyan-300/60"
+            className="inline-flex items-center gap-2 rounded-none border border-white/35 bg-black px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-white/10"
           >
             <Zap size={16} />
-            Claim XP
+            ACT
           </button>
         </div>
 
         <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
           <div>
-            <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.15em] text-cyan-100/80">
+            <div className="mb-2 flex items-center justify-between text-xs uppercase tracking-[0.15em] text-white/80">
               <span>XP {profile.xp}</span>
               <span>{profile.xpToNext} to next level</span>
             </div>
             <NeonProgress value={progress} />
           </div>
-          <div className="inline-flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2 text-sm">
-            <Sparkles className="text-fuchsia-300" size={16} />
-            <span className="font-mono text-cyan-100">Level {profile.level}</span>
+          <div className="inline-flex items-center gap-2 rounded-none border border-white/30 bg-black px-3 py-2 text-sm text-white">
+            <Sparkles className="text-white" size={16} />
+            <span className="font-mono">LV {profile.level}</span>
           </div>
         </div>
       </div>

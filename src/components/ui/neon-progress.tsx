@@ -8,17 +8,16 @@ interface NeonProgressProps {
 
 export function NeonProgress({ value }: NeonProgressProps) {
   return (
-    <div className="relative h-3 w-full overflow-hidden rounded-full bg-white/10">
+    <div className="relative h-4 w-full overflow-hidden rounded-none border border-white/30 bg-black">
       <motion.div
-        className="h-full rounded-full"
+        className="h-full"
         style={{
-          background:
-            "linear-gradient(90deg, rgba(20,216,255,1) 0%, rgba(127,77,255,1) 55%, rgba(255,79,240,1) 100%)",
-          boxShadow: "0 0 18px rgba(20,216,255,0.7)",
+          background: "linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,59,48,1) 100%)",
+          boxShadow: "none",
         }}
         initial={{ width: 0 }}
         animate={{ width: `${value}%` }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
       />
     </div>
   );

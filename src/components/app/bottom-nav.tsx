@@ -20,7 +20,7 @@ const tabs: { key: TabKey; icon: React.ComponentType<{ size?: number }>; label: 
 
 function BottomNavComponent({ current, onChange }: BottomNavProps) {
   return (
-    <nav className="fixed inset-x-0 bottom-3 z-40 mx-auto w-[min(680px,94vw)] rounded-2xl border border-cyan-300/25 bg-slate-950/75 p-2 backdrop-blur-xl">
+    <nav className="fixed inset-x-0 bottom-3 z-40 mx-auto w-[min(720px,94vw)] border border-white/30 bg-black/95 p-2">
       <ul className="grid grid-cols-5 gap-1">
         {tabs.map((tab) => {
           const Icon = tab.icon;
@@ -31,10 +31,10 @@ function BottomNavComponent({ current, onChange }: BottomNavProps) {
                 type="button"
                 onClick={() => onChange(tab.key)}
                 className={cn(
-                  "flex w-full flex-col items-center gap-1 rounded-xl px-2 py-2 text-[10px] uppercase tracking-[0.14em] transition",
+                  "flex w-full flex-col items-center gap-1 rounded-none border px-2 py-2 text-[10px] uppercase tracking-[0.14em] transition",
                   active
-                    ? "bg-cyan-400/20 text-cyan-100 shadow-[0_0_16px_rgba(20,216,255,0.45)]"
-                    : "text-cyan-100/70 hover:bg-white/5",
+                    ? "border-white bg-white text-black"
+                    : "border-white/10 text-white/75 hover:bg-white/10",
                 )}
               >
                 <Icon size={16} />

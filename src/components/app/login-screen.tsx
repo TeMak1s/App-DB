@@ -32,13 +32,13 @@ export function LoginScreen({
 
   return (
     <section className="relative mx-auto flex min-h-screen w-full max-w-lg flex-col justify-center p-6">
-      <div className="glass-panel neon-border rounded-3xl p-6 md:p-8">
+      <div className="glass-panel neon-border rounded-none border-white/40 p-6 md:p-8 shadow-[0_0_0_2px_rgba(255,255,255,0.08)]">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-mono text-2xl text-white">Summoner Gate</h2>
+          <h2 className="font-mono text-lg text-white uppercase tracking-[0.12em]">SAVE FILE</h2>
           <button
             type="button"
             onClick={onToggleSound}
-            className="rounded-xl border border-cyan-300/40 bg-cyan-400/10 p-2 text-cyan-100"
+            className="rounded-none border border-white/30 bg-black px-2 py-2 text-white"
             aria-label="Toggle sound"
           >
             {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
@@ -50,58 +50,58 @@ export function LoginScreen({
             <button
               type="button"
               onClick={() => setMode("signin")}
-              className={`rounded-lg border px-3 py-2 text-xs uppercase tracking-[0.16em] transition ${
+              className={`rounded-none border px-3 py-2 text-xs uppercase tracking-[0.16em] transition ${
                 mode === "signin"
-                  ? "border-cyan-300/60 bg-cyan-400/20 text-cyan-100"
-                  : "border-white/10 bg-black/30 text-cyan-100/70"
+                  ? "border-white/70 bg-white/10 text-white"
+                  : "border-white/20 bg-black/40 text-white/70"
               }`}
             >
-              Sign In
+              FIGHT
             </button>
             <button
               type="button"
               onClick={() => setMode("signup")}
-              className={`rounded-lg border px-3 py-2 text-xs uppercase tracking-[0.16em] transition ${
+              className={`rounded-none border px-3 py-2 text-xs uppercase tracking-[0.16em] transition ${
                 mode === "signup"
-                  ? "border-fuchsia-300/60 bg-fuchsia-400/20 text-fuchsia-100"
-                  : "border-white/10 bg-black/30 text-cyan-100/70"
+                  ? "border-white/70 bg-white/10 text-white"
+                  : "border-white/20 bg-black/40 text-white/70"
               }`}
             >
-              Sign Up
+              ACT
             </button>
           </div>
 
           <input
-            className="w-full rounded-xl border border-white/10 bg-black/30 px-3 py-3 text-sm text-cyan-100 outline-none focus:border-cyan-300/60"
+            className="w-full rounded-none border border-white/20 bg-black px-3 py-3 text-sm text-white outline-none focus:border-white/70"
             placeholder="Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
           <input
-            className="w-full rounded-xl border border-white/10 bg-black/30 px-3 py-3 text-sm text-cyan-100 outline-none focus:border-cyan-300/60"
+            className="w-full rounded-none border border-white/20 bg-black px-3 py-3 text-sm text-white outline-none focus:border-white/70"
             placeholder="Password"
             type="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
 
-          {errorMessage ? <p className="text-xs text-rose-300">{errorMessage}</p> : null}
-          {infoMessage ? <p className="text-xs text-emerald-300">{infoMessage}</p> : null}
+          {errorMessage ? <p className="text-xs text-rose-300 uppercase tracking-[0.08em]">{errorMessage}</p> : null}
+          {infoMessage ? <p className="text-xs text-emerald-300 uppercase tracking-[0.08em]">{infoMessage}</p> : null}
 
           <button
             type="button"
             onClick={submitAuth}
             disabled={loading}
-            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 px-4 py-3 font-mono text-sm uppercase tracking-[0.18em] text-white shadow-[0_0_20px_rgba(20,216,255,0.5)] transition hover:brightness-110"
+            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-none border border-white/40 bg-white px-4 py-3 font-mono text-sm uppercase tracking-[0.18em] text-black transition hover:bg-white/90"
           >
-            <LogIn size={16} /> {loading ? "Forging Link..." : mode === "signin" ? "Enter Rift" : "Create Sigil"}
+            <LogIn size={16} /> {loading ? "..." : mode === "signin" ? "FIGHT" : "ACT"}
           </button>
 
           <button
             type="button"
             onClick={() => onLogin({ email: "", password: "", mode: "guest" })}
             disabled={loading}
-            className="w-full rounded-xl border border-cyan-300/30 bg-cyan-500/10 px-4 py-2 text-xs uppercase tracking-[0.16em] text-cyan-100"
+            className="w-full rounded-none border border-white/20 bg-black px-4 py-2 text-xs uppercase tracking-[0.16em] text-white/90"
           >
             Continue as Guest
           </button>
@@ -110,7 +110,7 @@ export function LoginScreen({
             type="button"
             onClick={() => onRequestPasswordReset(email)}
             disabled={loading}
-            className="w-full text-center text-xs uppercase tracking-[0.16em] text-cyan-200/85 hover:text-cyan-100"
+            className="w-full text-center text-xs uppercase tracking-[0.16em] text-white/80 hover:text-white"
           >
             Forgot Password
           </button>
