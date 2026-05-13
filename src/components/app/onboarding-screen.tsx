@@ -17,7 +17,7 @@ export function OnboardingScreen({ onFinish }: OnboardingScreenProps) {
     <section className="mx-auto flex min-h-screen w-full max-w-2xl flex-col justify-center p-6">
       <div className="glass-panel neon-border rounded-3xl p-6 md:p-8">
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">Onboarding</p>
-        <h2 className="mt-2 font-mono text-3xl text-white">Welcome, Data Hunter</h2>
+        <h2 className="mt-2 font-mono text-3xl text-white">Welcome, Summoner</h2>
 
         <div className="mt-5 space-y-3">
           {steps.map((step, idx) => (

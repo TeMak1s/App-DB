@@ -34,7 +34,7 @@ export function LoginScreen({
     <section className="relative mx-auto flex min-h-screen w-full max-w-lg flex-col justify-center p-6">
       <div className="glass-panel neon-border rounded-3xl p-6 md:p-8">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-mono text-2xl text-white">Access Node</h2>
+          <h2 className="font-mono text-2xl text-white">Summoner Gate</h2>
           <button
             type="button"
             onClick={onToggleSound}
@@ -94,7 +94,7 @@ export function LoginScreen({
             disabled={loading}
             className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-violet-500 px-4 py-3 font-mono text-sm uppercase tracking-[0.18em] text-white shadow-[0_0_20px_rgba(20,216,255,0.5)] transition hover:brightness-110"
           >
-            <LogIn size={16} /> {loading ? "Connecting..." : mode === "signin" ? "Enter Arena" : "Create Account"}
+            <LogIn size={16} /> {loading ? "Forging Link..." : mode === "signin" ? "Enter Rift" : "Create Sigil"}
           </button>
 
           <button

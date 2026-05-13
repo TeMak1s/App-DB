@@ -420,8 +420,8 @@ export function SqlIrlApp() {
       <div className="px-4 pb-8 pt-6 md:px-6">
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <p className="font-mono text-xs uppercase tracking-[0.22em] text-cyan-300">LinkedIn gamer for DBAs</p>
-            <h2 className="font-mono text-2xl text-white text-neon">DB Rank Command Center</h2>
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-cyan-300">A Legends Hub for Database Masters</p>
+            <h2 className="font-mono text-2xl text-white text-neon">Summoner Archive: DB Rank</h2>
           </div>
           <div className="rounded-xl border border-cyan-300/30 bg-cyan-500/10 px-3 py-2 text-xs text-cyan-100">
             <Sparkles size={14} className="mb-1" />

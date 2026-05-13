@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Exo_2, Orbitron } from "next/font/google";
+import { Cinzel, Lora } from "next/font/google";
 import "./globals.css";
 
-const orbitron = Orbitron({
+const cinzel = Cinzel({
   variable: "--font-orbitron",
   subsets: ["latin"],
 });
 
-const exo2 = Exo_2({
+const lora = Lora({
   variable: "--font-exo2",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: "SQL IRL | DB Rank",
-  description: "Gamified cyberpunk progression dashboard for database skills.",
+  description: "Legend-inspired progression dashboard for database mastery.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${orbitron.variable} ${exo2.variable} h-full antialiased`}
+      className={`${cinzel.variable} ${lora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
