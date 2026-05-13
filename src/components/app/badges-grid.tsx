@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Award } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import type { Badge } from "@/types/domain";
@@ -12,7 +13,7 @@ const rarityTone: Record<Badge["rarity"], string> = {
   Legendary: "text-amber-200 border-amber-300/30 bg-amber-300/10",
 };
 
-export function BadgesGrid({ badges }: BadgesGridProps) {
+function BadgesGridComponent({ badges }: BadgesGridProps) {
   return (
     <GlassCard>
       <div className="mb-3 flex items-center justify-between">
@@ -36,3 +37,5 @@ export function BadgesGrid({ badges }: BadgesGridProps) {
     </GlassCard>
   );
 }
+
+export const BadgesGrid = memo(BadgesGridComponent);

@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { motion } from "framer-motion";
 import {
   PolarAngleAxis,
@@ -15,7 +16,7 @@ interface SkillsRadarProps {
   metrics: SkillMetric[];
 }
 
-export function SkillsRadar({ metrics }: SkillsRadarProps) {
+function SkillsRadarComponent({ metrics }: SkillsRadarProps) {
   return (
     <GlassCard className="holographic overflow-hidden">
       <div className="mb-4 flex items-center justify-between">
@@ -70,3 +71,5 @@ export function SkillsRadar({ metrics }: SkillsRadarProps) {
     </GlassCard>
   );
 }
+
+export const SkillsRadar = memo(SkillsRadarComponent);

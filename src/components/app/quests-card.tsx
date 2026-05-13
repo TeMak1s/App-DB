@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Coins, ShieldCheck, Swords, Trophy } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import type { Mission } from "@/types/domain";
@@ -6,7 +7,7 @@ interface QuestsCardProps {
   missions: Mission[];
 }
 
-export function QuestsCard({ missions }: QuestsCardProps) {
+function QuestsCardComponent({ missions }: QuestsCardProps) {
   return (
     <GlassCard>
       <div className="mb-4 flex items-center justify-between">
@@ -47,3 +48,5 @@ export function QuestsCard({ missions }: QuestsCardProps) {
     </GlassCard>
   );
 }
+
+export const QuestsCard = memo(QuestsCardComponent);

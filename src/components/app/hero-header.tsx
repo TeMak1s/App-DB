@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { memo } from "react";
 import { Sparkles, Zap } from "lucide-react";
 import { RankBadge } from "@/components/ui/rank-badge";
 import { NeonProgress } from "@/components/ui/neon-progress";
@@ -10,7 +11,7 @@ interface HeroHeaderProps {
   onGainXp: () => void;
 }
 
-export function HeroHeader({ profile, onGainXp }: HeroHeaderProps) {
+function HeroHeaderComponent({ profile, onGainXp }: HeroHeaderProps) {
   const progress = xpProgress(profile.xp, profile.xpToNext);
 
   return (
@@ -36,7 +37,7 @@ export function HeroHeader({ profile, onGainXp }: HeroHeaderProps) {
           <button
             type="button"
             onClick={onGainXp}
-            className="pulse-glow inline-flex items-center gap-2 rounded-xl border border-cyan-300/60 bg-cyan-400/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 transition hover:bg-cyan-400/20"
+            className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/45 bg-cyan-400/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-200 transition hover:bg-cyan-400/20 hover:border-cyan-300/60"
           >
             <Zap size={16} />
             Claim XP
@@ -60,3 +61,5 @@ export function HeroHeader({ profile, onGainXp }: HeroHeaderProps) {
     </section>
   );
 }
+
+export const HeroHeader = memo(HeroHeaderComponent);

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Database, LogOut, Sparkles } from "lucide-react";
+import dynamic from "next/dynamic";
 import { simulateDatabaseSync } from "@/lib/mock-api";
 import { playLoginSfx, playToggleSfx, playXpSfx } from "@/lib/audio/sfx";
 import {
@@ -20,17 +21,10 @@ import { futureIntegrations } from "@/lib/integrations/roadmap";
 import { profileMock } from "@/lib/mocks";
 import { BottomNav } from "@/components/app/bottom-nav";
 import { HeroHeader } from "@/components/app/hero-header";
-import { SkillsRadar } from "@/components/app/skills-radar";
-import { QuestsCard } from "@/components/app/quests-card";
-import { BadgesGrid } from "@/components/app/badges-grid";
-import { LeaderboardCard } from "@/components/app/leaderboard-card";
-import { ProfilePanel } from "@/components/app/profile-panel";
-import { SocialPanel } from "@/components/app/social-panel";
 import { ParticleField } from "@/components/app/particle-field";
 import { SplashScreen } from "@/components/app/splash-screen";
 import { LoginScreen } from "@/components/app/login-screen";
 import { OnboardingScreen } from "@/components/app/onboarding-screen";
-import { AdminPanel } from "@/components/app/admin-panel";
 import { LoadingSkeleton } from "@/components/ui/loading-skeleton";
 import type {
   Badge,
@@ -63,6 +57,44 @@ const emptyState: BootstrapState = {
 };
 
 const SOUND_PREF_KEY = "sql-irl:sound-enabled";
+
+const SkillsRadar = dynamic(() => import("@/components/app/skills-radar").then((module) => module.SkillsRadar), {
+  ssr: false,
+  loading: () => <LoadingSkeleton />,
+});
+
+const QuestsCard = dynamic(() => import("@/components/app/quests-card").then((module) => module.QuestsCard), {
+  ssr: false,
+  loading: () => <div className="glass-panel rounded-2xl p-4" />,
+});
+
+const BadgesGrid = dynamic(() => import("@/components/app/badges-grid").then((module) => module.BadgesGrid), {
+  ssr: false,
+  loading: () => <div className="glass-panel rounded-2xl p-4" />,
+});
+
+const LeaderboardCard = dynamic(
+  () => import("@/components/app/leaderboard-card").then((module) => module.LeaderboardCard),
+  {
+    ssr: false,
+    loading: () => <div className="glass-panel rounded-2xl p-4" />,
+  },
+);
+
+const ProfilePanel = dynamic(() => import("@/components/app/profile-panel").then((module) => module.ProfilePanel), {
+  ssr: false,
+  loading: () => <div className="glass-panel rounded-2xl p-4" />,
+});
+
+const SocialPanel = dynamic(() => import("@/components/app/social-panel").then((module) => module.SocialPanel), {
+  ssr: false,
+  loading: () => <div className="glass-panel rounded-2xl p-4" />,
+});
+
+const AdminPanel = dynamic(() => import("@/components/app/admin-panel").then((module) => module.AdminPanel), {
+  ssr: false,
+  loading: () => <div className="glass-panel rounded-2xl p-4" />,
+});
 
 export function SqlIrlApp() {
   const [phase, setPhase] = useState<AppPhase>("splash");
@@ -174,15 +206,15 @@ export function SqlIrlApp() {
     return () => {
       active = false;
     };
-  }, [authLocked, connectionSource, phase, playerId]);
+  }, [authLocked, phase, playerId]);
 
-  const handleFinishOnboarding = async () => {
+  const handleFinishOnboarding = useCallback(async () => {
     setPhase("syncing");
     await simulateDatabaseSync();
     setPhase("app");
-  };
+  }, []);
 
-  const handleGainXp = () => {
+  const handleGainXp = useCallback(() => {
     const gain = 150;
     let leveledUp = false;
     setState((prev) => {
@@ -207,16 +239,16 @@ export function SqlIrlApp() {
 
     setXpFlash(gain);
     setTimeout(() => setXpFlash(0), 1200);
-  };
+  }, [playerId, soundEnabled]);
 
-  const handleToggleSound = () => {
+  const handleToggleSound = useCallback(() => {
     setSoundEnabled((prev) => !prev);
     if (!soundEnabled) {
       playToggleSfx();
     }
-  };
+  }, [soundEnabled]);
 
-  const handleLogin = async (payload: { email: string; password: string; mode: "signin" | "signup" | "guest" }) => {
+  const handleLogin = useCallback(async (payload: { email: string; password: string; mode: "signin" | "signup" | "guest" }) => {
     setAuthLoading(true);
     setLoginError(null);
     setLoginInfo(null);
@@ -238,9 +270,9 @@ export function SqlIrlApp() {
     } finally {
       setAuthLoading(false);
     }
-  };
+  }, [soundEnabled]);
 
-  const refreshData = async () => {
+  const refreshData = useCallback(async () => {
     setLoading(true);
     const data = await fetchBootstrapFromSupabase(playerId);
     const admin = connectionSource === "supabase" ? await isCurrentUserAdmin() : false;
@@ -255,9 +287,9 @@ export function SqlIrlApp() {
       guilds: data.guilds,
     });
     setLoading(false);
-  };
+  }, [connectionSource, playerId]);
 
-  const handleResetWeekly = async () => {
+  const handleResetWeekly = useCallback(async () => {
     setAdminBusy(true);
     setAdminStatus(null);
     try {
@@ -270,9 +302,9 @@ export function SqlIrlApp() {
     } finally {
       setAdminBusy(false);
     }
-  };
+  }, [refreshData]);
 
-  const handleRecalculateWeekly = async () => {
+  const handleRecalculateWeekly = useCallback(async () => {
     setAdminBusy(true);
     setAdminStatus(null);
     try {
@@ -285,9 +317,9 @@ export function SqlIrlApp() {
     } finally {
       setAdminBusy(false);
     }
-  };
+  }, [refreshData]);
 
-  const handleRequestPasswordReset = async (email: string) => {
+  const handleRequestPasswordReset = useCallback(async (email: string) => {
     setLoginError(null);
     setLoginInfo(null);
     try {
@@ -297,9 +329,9 @@ export function SqlIrlApp() {
       const message = error instanceof Error ? error.message : "Unable to send reset email.";
       setLoginError(message);
     }
-  };
+  }, []);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     setAuthLoading(true);
     try {
       if (connectionSource === "supabase" && !authLocked) {
@@ -320,7 +352,7 @@ export function SqlIrlApp() {
       setPhase("login");
       setAuthLoading(false);
     }
-  };
+  }, [authLocked, connectionSource]);
 
   const content = useMemo(() => {
     if (loading) {

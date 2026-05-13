@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Flame, Timer, Wrench } from "lucide-react";
 import type { Badge, PlayerProfile, SkillMetric } from "@/types/domain";
 import { RankBadge } from "@/components/ui/rank-badge";
@@ -9,7 +10,7 @@ interface ProfilePanelProps {
   badges: Badge[];
 }
 
-export function ProfilePanel({ profile, skills, badges }: ProfilePanelProps) {
+function ProfilePanelComponent({ profile, skills, badges }: ProfilePanelProps) {
   const unlocked = badges.filter((badge) => badge.unlocked).length;
 
   return (
@@ -74,3 +75,5 @@ export function ProfilePanel({ profile, skills, badges }: ProfilePanelProps) {
     </div>
   );
 }
+
+export const ProfilePanel = memo(ProfilePanelComponent);

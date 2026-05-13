@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Crown } from "lucide-react";
 import { RankBadge } from "@/components/ui/rank-badge";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -7,7 +8,7 @@ interface LeaderboardCardProps {
   entries: LeaderboardEntry[];
 }
 
-export function LeaderboardCard({ entries }: LeaderboardCardProps) {
+function LeaderboardCardComponent({ entries }: LeaderboardCardProps) {
   return (
     <GlassCard>
       <div className="mb-4 flex items-center justify-between">
@@ -38,3 +39,5 @@ export function LeaderboardCard({ entries }: LeaderboardCardProps) {
     </GlassCard>
   );
 }
+
+export const LeaderboardCard = memo(LeaderboardCardComponent);

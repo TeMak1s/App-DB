@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Users, Radar } from "lucide-react";
 import type { Guild } from "@/types/domain";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -6,7 +7,7 @@ interface SocialPanelProps {
   guilds: Guild[];
 }
 
-export function SocialPanel({ guilds }: SocialPanelProps) {
+function SocialPanelComponent({ guilds }: SocialPanelProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <GlassCard>
@@ -43,3 +44,5 @@ export function SocialPanel({ guilds }: SocialPanelProps) {
     </div>
   );
 }
+
+export const SocialPanel = memo(SocialPanelComponent);

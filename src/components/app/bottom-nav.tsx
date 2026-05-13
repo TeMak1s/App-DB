@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import { Home, Shield, Trophy, Users, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { TabKey } from "@/types/domain";
@@ -17,7 +18,7 @@ const tabs: { key: TabKey; icon: React.ComponentType<{ size?: number }>; label: 
   { key: "Profile", icon: User, label: "Profile" },
 ];
 
-export function BottomNav({ current, onChange }: BottomNavProps) {
+function BottomNavComponent({ current, onChange }: BottomNavProps) {
   return (
     <nav className="fixed inset-x-0 bottom-3 z-40 mx-auto w-[min(680px,94vw)] rounded-2xl border border-cyan-300/25 bg-slate-950/75 p-2 backdrop-blur-xl">
       <ul className="grid grid-cols-5 gap-1">
@@ -46,3 +47,5 @@ export function BottomNav({ current, onChange }: BottomNavProps) {
     </nav>
   );
 }
+
+export const BottomNav = memo(BottomNavComponent);

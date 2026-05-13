@@ -1,23 +1,25 @@
+const particles = Array.from({ length: 10 }).map((_, index) => {
+  const left = `${(index * 23 + 11) % 100}%`;
+  const top = `${(index * 37 + 19) % 100}%`;
+  const size = 2 + (index % 3);
+
+  return { left, top, size };
+});
+
 export function ParticleField() {
   return (
     <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      {Array.from({ length: 26 }).map((_, i) => {
-        const left = `${(i * 17) % 100}%`;
-        const top = `${(i * 31) % 100}%`;
-        const size = 2 + (i % 4);
-        const delay = (i % 7) * 0.5;
-        const duration = 4 + (i % 5);
+      {particles.map((particle, index) => {
         return (
           <span
-            key={`particle-${i}`}
-            className="absolute rounded-full bg-cyan-300/80"
+            key={`particle-${index}`}
+            className="absolute rounded-full bg-cyan-200/35"
             style={{
-              left,
-              top,
-              width: `${size}px`,
-              height: `${size}px`,
-              filter: "drop-shadow(0 0 8px rgba(20,216,255,0.9))",
-              animation: `pulseGlow ${duration}s ease-in-out ${delay}s infinite`,
+              left: particle.left,
+              top: particle.top,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              opacity: 0.35 + (index % 4) * 0.08,
             }}
           />
         );
