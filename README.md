@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SQL IRL / DB Rank
 
-## Getting Started
+Mobile-first cyberpunk dashboard that gamifies database learning and progression.
 
-First, run the development server:
+## Stack
+
+- Next.js + React + TypeScript
+- TailwindCSS + Framer Motion
+- Recharts + Lucide Icons
+- Supabase + PostgreSQL
+
+## Run Locally
+
+```bash
+npm install
+npm run dev
+```
+
+Open http://localhost:3000.
+
+## Environment
+
+Copy `.env.example` to `.env.local` and fill:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=...
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+```
+
+If env vars are missing, the app automatically runs in mock mode.
+
+## Supabase Setup
+
+1. Create a Supabase project.
+2. In SQL editor, run [supabase/schema.sql](supabase/schema.sql).
+3. Run [supabase/seed.sql](supabase/seed.sql).
+4. Enable Anonymous Auth in Supabase Authentication settings if you want anonymous sign-in.
+5. If using email/password login, enable Email provider in Supabase Auth.
+6. To grant admin permissions for leaderboard operations, insert your auth user id into `public.app_admins`.
+
+Example:
+
+```sql
+insert into public.app_admins (user_id)
+values ('YOUR_AUTH_USER_UUID')
+on conflict (user_id) do nothing;
+```
+
+## Auth And Admin Behavior
+
+- Login supports `Sign In`, `Sign Up`, and `Continue as Guest`.
+- `Forgot Password` sends a reset email using Supabase Auth.
+- `Logout` always returns to login screen and clears the in-app session state.
+- `Admin Ops` is only shown when the current authenticated user is in `public.app_admins`.
+
+## Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy (Vercel)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Push this repository to GitHub.
+2. Import the repository in Vercel.
+3. Set environment variables in Vercel project settings:
+	- `NEXT_PUBLIC_SUPABASE_URL`
+	- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+	- `NEXT_PUBLIC_APP_URL` (production URL)
+4. Deploy.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The project is pre-configured for Vercel using [vercel.json](vercel.json).
 
-## Learn More
+## Scalable Architecture
 
-To learn more about Next.js, take a look at the following resources:
+- App shell and feature composition: [src/components/app/sql-irl-app.tsx](src/components/app/sql-irl-app.tsx)
+- Reusable design system blocks: [src/components/ui](src/components/ui)
+- Domain typing and contracts: [src/types/domain.ts](src/types/domain.ts)
+- Data providers (Supabase + fallback): [src/lib/supabase/repository.ts](src/lib/supabase/repository.ts)
+- SQL infrastructure and seeds: [supabase/schema.sql](supabase/schema.sql), [supabase/seed.sql](supabase/seed.sql)
+- Future integrations roadmap: [src/lib/integrations/roadmap.ts](src/lib/integrations/roadmap.ts)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Main app shell: [src/components/app/sql-irl-app.tsx](src/components/app/sql-irl-app.tsx)
+- Supabase repository with fallback: [src/lib/supabase/repository.ts](src/lib/supabase/repository.ts)
+- Futuristic UI components: [src/components/ui](src/components/ui)
+- Game data mocks: [src/lib/mocks.ts](src/lib/mocks.ts)
